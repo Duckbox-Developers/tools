@@ -32,7 +32,11 @@
 #include "icomoon_font.h"
 #include "oled_freetype.h"
 
-#define vumodel "solo4k" //FIX ME
+#if BOXMODEL_VUDUO2
+#define vumodel "duo2"
+#else
+#define vumodel "solo4k"
+#endif
 
 int init_freetype()
 {
