@@ -228,9 +228,19 @@ int PNGUtil::send(char* png_file_name)
 
 int main (int argc, char* argv[]) {
 	if (argc < 2) {
-		printf("png_util - for 400x240 LCD (DM8000, VUDUO2)\n");
-		printf("Syntax: png_util <png file> (/dev/lcd2)\n");
+		printf("png_util - for 400x240 LCD (DM8000, VUDUO2)\n\n");
+		printf("Syntax:  png_util <png file or initonly> (/dev/lcd2)\n");
+		printf("Example: png_util initonly\n");
+		printf("Example: png_util /path/file.png\n");
+		printf("Example: png_util /path/file.png /dev/lcd2\n\n");
 		return 0;
+	}
+
+	if (!strncmp(argv[1], "initonly", 8))
+	{
+		init_fb(device_file_name);
+		sleep(1);
+		return 1;
 	}
 
 	if (argv[2])
