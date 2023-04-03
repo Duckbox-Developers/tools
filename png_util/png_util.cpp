@@ -236,15 +236,15 @@ int main (int argc, char* argv[]) {
 		return 0;
 	}
 
+	if (argv[2])
+		device_file_name = argv[2];
+
 	if (!strncmp(argv[1], "initonly", 8))
 	{
 		init_fb(device_file_name);
 		sleep(1);
 		return 1;
 	}
-
-	if (argv[2])
-		device_file_name = argv[2];
 
 	init_fb(device_file_name);
 	PNGUtil anzeige = PNGUtil();
