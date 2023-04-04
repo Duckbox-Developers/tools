@@ -1,7 +1,11 @@
 #include <linux/fb.h>
 #include "png_util.h"
 
+#if BOXMODEL_DM8000
+const char* device_file_name = "/dev/oled0";
+#else
 const char* device_file_name = "/dev/lcd2";
+#endif
 
 static int x, y;
 static int width, height;
@@ -222,17 +226,17 @@ int PNGUtil::send(char* png_file_name)
 	w = write(device_fd, row_pointers_bit_shift, height * width * 2);
 //	printf("write ret : %d\n", w);
 //	w = ioctl(device_fd, 0);
-//	printf("write to /dev/lcd2 : %d\n", w);
+//	printf("write to %s : %d\n", device_file_name, w);
 	return 1;
 }
 
 int main (int argc, char* argv[]) {
 	if (argc < 2) {
 		printf("png_util - for 400x240 LCD (DM8000, VUDUO2)\n\n");
-		printf("Syntax:  png_util <png file or initonly> (/dev/lcd2)\n");
+		printf("Syntax:  png_util <png file or initonly> (%s)\n", device_file_name);
 		printf("Example: png_util initonly\n");
 		printf("Example: png_util /path/file.png\n");
-		printf("Example: png_util /path/file.png /dev/lcd2\n\n");
+		printf("Example: png_util /path/file.png %s\n\n", device_file_name);
 		return 0;
 	}
 
