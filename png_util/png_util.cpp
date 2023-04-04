@@ -245,6 +245,12 @@ int main (int argc, char* argv[]) {
 
 	if (!strncmp(argv[1], "initonly", 8))
 	{
+		int lcd_fd = open(device_file_name, O_WRONLY);
+		if (lcd_fd)
+		{
+			ioctl(lcd_fd, 0x10, 128); // brightness 0..255
+			close(lcd_fd);
+		}
 		init_fb(device_file_name);
 		sleep(1);
 		return 1;
