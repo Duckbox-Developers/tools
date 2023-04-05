@@ -40,11 +40,13 @@ static int init_fb(const char* g_fbDevice)
 	int g_fbFd = open(g_fbDevice, O_RDWR);
 	if (ioctl(g_fbFd, FBIO_BLIT) < 0)
 		perror("FBIO_BLIT");
+
 	unsigned char tmp = 1;
-	if (ioctl(g_fbFd, FBIO_SET_MANUAL_BLIT, &tmp)<0)
+	if (ioctl(g_fbFd, FBIO_SET_MANUAL_BLIT, &tmp) < 0)
 		perror("FBIO_SET_MANUAL_BLIT (on)");
+
 	tmp = 0;
-	if (ioctl(g_fbFd, FBIO_SET_MANUAL_BLIT, &tmp)<0)
+	if (ioctl(g_fbFd, FBIO_SET_MANUAL_BLIT, &tmp) < 0)
 		perror("FBIO_SET_MANUAL_BLIT (off)");
 
 	g_screeninfo_var.xres_virtual = g_screeninfo_var.xres = FB_WIDTH_STD;
@@ -64,6 +66,7 @@ static int init_fb(const char* g_fbDevice)
 	{
 		close(g_fbFd);
 		g_fbFd = -1;
+		return 1;
 	} else
 		perror("Error: Framebuffer not available!\n");
 
