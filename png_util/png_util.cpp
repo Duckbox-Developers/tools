@@ -7,6 +7,10 @@ const char* device_file_name = "/dev/oled0";
 const char* device_file_name = "/dev/lcd2";
 #endif
 
+int lcd_brightness = 128;
+bool sb = false;
+char * png_file_name;
+
 static int x, y;
 static int width, height;
 
@@ -63,6 +67,18 @@ static int init_fb(const char* g_fbDevice)
 	} else
 		perror("Error: Framebuffer not available!\n");
 
+	return 0;
+}
+
+static int set_brightness(void)
+{
+	int lcd_fd = open(device_file_name, O_WRONLY);
+	if (lcd_fd)
+	{
+		ioctl(lcd_fd, 0x10, lcd_brightness);
+		close(lcd_fd);
+		return 1;
+	}
 	return 0;
 }
 
@@ -233,33 +249,51 @@ int PNGUtil::send(char* png_file_name)
 int main (int argc, char* argv[]) {
 	if (argc < 2) {
 		printf("png_util - for 400x240 LCD (DM8000, VUDUO2)\n\n");
-		printf("Syntax:  png_util <png file or initonly> (%s)\n", device_file_name);
+		printf("Syntax:  png_util <png file or initonly> (-b %d) (-d %s)\n", lcd_brightness, device_file_name);
 		printf("Example: png_util initonly\n");
 		printf("Example: png_util /path/file.png\n");
-		printf("Example: png_util /path/file.png %s\n\n", device_file_name);
+		printf("Example: png_util /path/file.png -d %s\n", device_file_name);
+		printf("Example: png_util /path/file.png -b %d\n", lcd_brightness);
+		printf("Example: png_util /path/file.png -b %d -d %s\n\n", lcd_brightness, device_file_name);
 		return 0;
 	}
 
-	if (argv[2])
-		device_file_name = argv[2];
-
-	if (!strncmp(argv[1], "initonly", 8))
+	for (int x = 1; x < argc; x++)
 	{
-		int lcd_fd = open(device_file_name, O_WRONLY);
-		if (lcd_fd)
+		if ((!strcmp(argv[x], "initonly")))
 		{
-			ioctl(lcd_fd, 0x10, 128); // brightness 0..255
-			close(lcd_fd);
+//			printf("initonly\n");
+			set_brightness();
+			init_fb(device_file_name);
+			sleep(1);
+			return 1;
 		}
-		init_fb(device_file_name);
-		sleep(1);
-		return 1;
+		else if ((!strcmp(argv[x], "-b")))
+		{
+			x++;
+			lcd_brightness = atoi(argv[x]);
+			sb = true;
+//			printf("brightness: %d\n", lcd_brightness);
+		}
+		else if ((!strcmp(argv[x], "-d")))
+		{
+			x++;
+			device_file_name = argv[x];
+//			printf("device_file_name: %s\n", device_file_name);
+		}
+		else
+		{
+			png_file_name = argv[x];
+//			printf("png_file_name: %s\n", png_file_name);
+		}
 	}
 
+	if (sb)
+		set_brightness();
 	init_fb(device_file_name);
 	PNGUtil anzeige = PNGUtil();
 	anzeige.getInstance()->connect();
-	int ret = anzeige.getInstance()->send(argv[1]);
+	int ret = anzeige.getInstance()->send(png_file_name);
 	anzeige.getInstance()->disconnect();
 	return ret;
 }
