@@ -293,10 +293,13 @@ int main (int argc, char* argv[]) {
 
 	if (sb)
 		set_brightness();
-	init_fb(device_file_name);
+//	init_fb(device_file_name);
+	int ret = 0;
 	PNGUtil anzeige = PNGUtil();
-	anzeige.getInstance()->connect();
-	int ret = anzeige.getInstance()->send(png_file_name);
-	anzeige.getInstance()->disconnect();
+	if (anzeige.getInstance()->connect())
+	{
+		ret = anzeige.getInstance()->send(png_file_name);
+		anzeige.getInstance()->disconnect();
+	}
 	return ret;
 }
