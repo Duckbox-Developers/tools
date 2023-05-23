@@ -1721,14 +1721,14 @@ void hauptseite(void)
 				RenderString(temp_string, sx + h_abs + longest_length + 2*OFFSET_MED + scale2res(110), linie_oben + v_abs, maxwidth, LEFT, FSIZE_SMALL, CMCT);
 
 				snprintf(temp_string, sizeof(temp_string), "%d%%", (int) floor(mmcblk_info[i].usage_percent + 0.5));
-#if BOXMODEL_VUPLUS_ARM
+#if 1	//looks better :)
 				draw_progressbar(sx + h_abs + longest_length + 2*OFFSET_MED + scale2res(230), linie_oben + v_abs - 2*OFFSET_MED, sx + h_abs + longest_length + 2*OFFSET_MED + scale2res(310),
 #else
 				draw_progressbar(sx + h_abs + longest_length + 2*OFFSET_MED + scale2res(230), linie_oben + v_abs - 2*OFFSET_MED, sx + h_abs + longest_length + 2*OFFSET_MED + scale2res(340),
 #endif
 					(linie_oben + v_abs - 2*OFFSET_MED + scale2res(16)), PB_LEFT_GREEN70, (int) floor(mmcblk_info[i].usage_percent + 0.5));
 				// used
-#if BOXMODEL_VUPLUS_ARM
+#if 1	//looks better :)
 				RenderString(temp_string, sx + h_abs + longest_length + 2*OFFSET_MED + scale2res(320), (linie_oben + v_abs - OFFSET_MIN), maxwidth, LEFT, FSIZE_VSMALL, CMCT);
 #else
 				RenderString(temp_string, sx + h_abs + longest_length + 2*OFFSET_MED + scale2res(350), (linie_oben + v_abs - OFFSET_MIN), maxwidth, LEFT, FSIZE_VSMALL, CMCT);
@@ -1928,7 +1928,7 @@ void up_main_mem(void)
 		}
 	}
 
-	char chip_name[2][MAX_NAME_LEN];
+	char chip_name[2][MAX_NAME_LEN] = {};
 	if (read_nim_socket(chip_name, 2) < 0)
 		safe_strncpy(chip_name[0], "", MAX_NAME_LEN);
 
