@@ -115,7 +115,7 @@ int lcd_open(const char *dev, int mode, int x_res, int y_res)
 
 int lcd_setmode(int mode)
 {
-#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA
+#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA && !BOXMODEL_VUULTIMO
 	int tmp;
 	if (mode == 0)
 	{
@@ -215,7 +215,7 @@ void lcd_draw()
 
 int lcd_clear()
 {
-#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA
+#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA && !BOXMODEL_VUULTIMO
 	if (ioctl(fd, LCD_IOCTL_CLEAR) < 0)
 	{
 		printf("%s: cannot clear lcd device\n", __FUNCTION__);
