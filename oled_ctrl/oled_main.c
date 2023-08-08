@@ -38,7 +38,7 @@ tArgs vArgs[] =
 {
 	{ "-b", " --setBrightness		", "Args: brightness\n\tSet oled brightness" },
 	{ "-c", " --clear			", "Args: No argumens\n\tClear oled display" },
-        { "-d", " --deepStandby			", "Args: No argumens\n\tEnter deep standby" },
+	{ "-d", " --deepStandby			", "Args: No argumens\n\tEnter deep standby" },
 	{ "-tu", " --setTextUp			", "Args: text\n\tSet text to oled in up" },
 	{ "-tc", " --setTextCenter		", "Args: text\n\tSet text to oled in center" },
 	{ "-td", " --setTextDown		", "Args: text\n\tSet text to oled in down" },
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 					if (brightness < 0 || brightness > 10)
 					{
 						fprintf(stderr, "Brightness value out of range\n");
-                                        	usage(argv[0], NULL);
+						usage(argv[0], NULL);
 					}
 					/* set display brightness */
 					lcd_brightness(brightness);
