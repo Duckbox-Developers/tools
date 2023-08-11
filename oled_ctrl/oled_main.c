@@ -37,7 +37,9 @@ typedef struct
 tArgs vArgs[] =
 {
 	{ "-b  ",  " --setBrightness			", "Args: brightness\n\tSet oled brightness" },
+#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA && !BOXMODEL_VUULTIMO
 	{ "-c  ",  " --clear				", "Args: No argumens\n\tClear oled display" },
+#endif
 	{ "-d  ",  " --deepStandby			", "Args: No argumens\n\tEnter deep standby" },
 	{ "-tu ",  " --setTextUp			", "Args: text\n\tSet text to oled in up" },
 	{ "-tc ",  " --setTextCenter			", "Args: text\n\tSet text to oled in center" },
