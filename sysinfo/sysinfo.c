@@ -857,7 +857,7 @@ int get_info_cpu(void)
 			{
 				daten_auslesen(line_buffer, hard_rev, sizeof(hard_rev),':', '\n');
 			}
-#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2
+#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO
 			// Hardware
 			if ((ptr = strstr(line_buffer, "system type")) != NULL)
 			{
@@ -896,7 +896,7 @@ int get_info_cpu(void)
 			{
 				daten_auslesen(line_buffer, bogomips, sizeof(bogomips),':', '\n');
 			}
-#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2
+#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO
 			// Processor
 			if ((ptr = strstr(line_buffer, "cpu model")) != NULL)
 			{
