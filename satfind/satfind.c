@@ -32,6 +32,14 @@
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/frontend.h>
 
+#if BOXMODEL_DM820
+#define M_SNR 35
+#define M_STRENGTH 350
+#else
+#define M_SNR 1
+#define M_STRENGTH 1
+#endif
+
 struct signal
 {
 	uint32_t ber;
@@ -265,6 +273,10 @@ int main(int argc, char **argv)
 		get_signal(&signal_quality, fe_fd);
 		if (!signal_changed(&signal_quality, &old_signal))
 			continue;
+
+		signal_quality.snr = signal_quality.snr * M_SNR;
+		signal_quality.strength = signal_quality.strength * M_STRENGTH;
+
 		char network_name_fin[31];
 		if (network_name[0] != 0)
 		{
