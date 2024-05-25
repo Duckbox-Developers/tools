@@ -47,7 +47,7 @@
 #include "mmcblk_info.h"
 #include "mtddevice_info.h"
 
-#define SH_VERSION 1.25
+#define SH_VERSION 1.27
 
 FT_Error error;
 FT_Library library;
@@ -1592,7 +1592,7 @@ void hauptseite(void)
 
 	get_info_cpu();
 	get_uptime();
-#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820
+#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM900
 	mtd_count = 0;
 #else
 	mtd_count = get_mtd();
