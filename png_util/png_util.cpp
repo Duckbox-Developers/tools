@@ -1,7 +1,7 @@
 #include <linux/fb.h>
 #include "png_util.h"
 
-#if BOXMODEL_DM8000
+#if BOXMODEL_DM8000 || BOXMODEL_DM900
 const char* device_file_name = "/dev/oled0";
 #else
 const char* device_file_name = "/dev/lcd2";
