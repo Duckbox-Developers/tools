@@ -857,7 +857,7 @@ int get_info_cpu(void)
 			{
 				daten_auslesen(line_buffer, hard_rev, sizeof(hard_rev),':', '\n');
 			}
-#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM820
+#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM820 || BOXMODEL_DM7080
 			// Hardware
 			if ((ptr = strstr(line_buffer, "system type")) != NULL)
 			{
@@ -896,7 +896,7 @@ int get_info_cpu(void)
 			{
 				daten_auslesen(line_buffer, bogomips, sizeof(bogomips),':', '\n');
 			}
-#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM820
+#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM820 || BOXMODEL_DM7080
 			// Processor
 			if ((ptr = strstr(line_buffer, "cpu model")) != NULL)
 			{
@@ -1592,7 +1592,7 @@ void hauptseite(void)
 
 	get_info_cpu();
 	get_uptime();
-#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM900
+#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM7080 || BOXMODEL_DM900
 	mtd_count = 0;
 #else
 	mtd_count = get_mtd();
