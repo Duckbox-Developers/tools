@@ -75,6 +75,18 @@ static int init_fb(const char* g_fbDevice)
 
 static int set_brightness(void)
 {
+#if BOXMODEL_DM900
+	FILE *f = fopen("/proc/stb/lcd/oled_brightness", "w");
+	if (!f)
+		f = fopen("/proc/stb/fp/oled_brightness", "w");
+	if (f)
+	{
+		if (fprintf(f, "%d", lcd_brightness) == 0)
+			printf("write /proc/stb/lcd/oled_brightness failed!! (%m)\n");
+		fclose(f);
+		return 1;
+	}
+#else
 	int lcd_fd = open(device_file_name, O_WRONLY);
 	if (lcd_fd)
 	{
@@ -82,6 +94,7 @@ static int set_brightness(void)
 		close(lcd_fd);
 		return 1;
 	}
+#endif
 	return 0;
 }
 
@@ -235,8 +248,13 @@ int PNGUtil::send(char* png_file_name)
 	{
 		for(j=0;j<row_byte_len;j+=3)
 		{
+#if BOXMODEL_DM900
+			row_pointers_bit_shift[row_pointers_2_ptr]=((row_pointers[i][j+1]&28)<<3)|(row_pointers[i][j+2]>>3);
+			row_pointers_bit_shift[row_pointers_2_ptr+1]=(row_pointers[i][j]&248)|(row_pointers[i][j+1]>>5);
+#else
 			row_pointers_bit_shift[row_pointers_2_ptr]=(row_pointers[i][j]&248)|(row_pointers[i][j+1]>>5);
 			row_pointers_bit_shift[row_pointers_2_ptr+1]=((row_pointers[i][j+1]&28)<<3)|(row_pointers[i][j+2]>>3);
+#endif
 			row_pointers_2_ptr += 2;
 		}
 	}
