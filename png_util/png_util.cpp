@@ -269,7 +269,7 @@ int PNGUtil::send(char* png_file_name)
 
 int main (int argc, char* argv[]) {
 	if (argc < 2) {
-		printf("png_util - for 400x240 LCD (DM8000, VUDUO2)\n\n");
+		printf("png_util - for 400x240 LCD (DM8000, VUDUO2, DM900, DM920)\n\n");
 		printf("Syntax:  png_util <png file or initonly> (-b %d) (-d %s)\n", lcd_brightness, device_file_name);
 		printf("Example: png_util initonly\n");
 		printf("Example: png_util /path/file.png\n");
