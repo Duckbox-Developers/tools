@@ -1592,7 +1592,7 @@ void hauptseite(void)
 
 	get_info_cpu();
 	get_uptime();
-#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM7080 || BOXMODEL_DM900
+#if BOXMODEL_VUPLUS_ARM || BOXMODEL_DM820 || BOXMODEL_DM7080 || BOXMODEL_DM900 || BOXMODEL_DM920
 	mtd_count = 0;
 #else
 	mtd_count = get_mtd();

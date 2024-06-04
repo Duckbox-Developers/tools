@@ -1,7 +1,7 @@
 #include <linux/fb.h>
 #include "png_util.h"
 
-#if BOXMODEL_DM8000 || BOXMODEL_DM900
+#if BOXMODEL_DM8000 || BOXMODEL_DM900 || BOXMODEL_DM920
 const char* device_file_name = "/dev/oled0";
 #else
 const char* device_file_name = "/dev/lcd2";
@@ -75,7 +75,7 @@ static int init_fb(const char* g_fbDevice)
 
 static int set_brightness(void)
 {
-#if BOXMODEL_DM900
+#if BOXMODEL_DM900 || BOXMODEL_DM920
 	FILE *f = fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)
 		f = fopen("/proc/stb/fp/oled_brightness", "w");
@@ -248,7 +248,7 @@ int PNGUtil::send(char* png_file_name)
 	{
 		for(j=0;j<row_byte_len;j+=3)
 		{
-#if BOXMODEL_DM900
+#if BOXMODEL_DM900 || BOXMODEL_DM920
 			row_pointers_bit_shift[row_pointers_2_ptr]=((row_pointers[i][j+1]&28)<<3)|(row_pointers[i][j+2]>>3);
 			row_pointers_bit_shift[row_pointers_2_ptr+1]=(row_pointers[i][j]&248)|(row_pointers[i][j+1]>>5);
 #else

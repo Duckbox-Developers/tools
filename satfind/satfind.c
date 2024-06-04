@@ -32,7 +32,7 @@
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/frontend.h>
 
-#if BOXMODEL_DM820 || BOXMODEL_DM7080 || BOXMODEL_DM900
+#if BOXMODEL_DM820 || BOXMODEL_DM7080 || BOXMODEL_DM900 || BOXMODEL_DM920
 #define M_SNR 35
 #define M_STRENGTH 350
 #else

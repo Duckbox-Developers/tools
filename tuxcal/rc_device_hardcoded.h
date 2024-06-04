@@ -18,7 +18,7 @@
 #define RC_DEVICE "/dev/input/event3"
 #define RC_DEVICE_FALLBACK "/dev/input/event0"
 
-#elif BOXMODEL_DM900
+#elif BOXMODEL_DM900 || BOXMODEL_DM920
 #define RC_DEVICE "/dev/input/event1"
 #define RC_DEVICE_FALLBACK "/dev/input/event4"
 
