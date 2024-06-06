@@ -54,7 +54,7 @@ void usage(char *prg, char *cmd)
 {
 	int i;
 	/* or printout a default usage */
-	fprintf(stderr, "Oled control tool, version 1.11 (VU 4K ARM, E4HD 4K Ultra, VU DUO2, VU ULTIMO)\n");
+	fprintf(stderr, "Oled control tool, version 1.11 (VU 4K ARM, E4HD 4K Ultra, VU DUO2, VU ULTIMO, DM820, DM900, DM920)\n");
 	fprintf(stderr, "General usage:\n\n");
 	fprintf(stderr, "%s argument [optarg1] [optarg2]\n", prg);
 

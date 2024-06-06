@@ -43,7 +43,7 @@ int lcd_read_value(const char *filename)
 	}
 	else
 	{
-#if BOXMODEL_DM8000
+#if BOXMODEL_DM8000 || BOXMODEL_DM7080
 		if (filename == LCD_XRES)
 			value = 132;
 		else if (filename == LCD_YRES)
@@ -101,9 +101,9 @@ int lcd_open(const char *dev, int mode, int x_res, int y_res)
 		return -1;
 	}
 
-#if BOXMODEL_DM8000
+#if BOXMODEL_DM8000 || BOXMODEL_DM7080
 	if (xres == 132 && yres == 64 && bpp == 8) {
-		printf("DM8000 original LCD not supported.\n", xres, yres, bpp);
+		printf("DM8000/DM7080 original LCD not supported.\n", xres, yres, bpp);
 		return 0;
 	}
 #endif
