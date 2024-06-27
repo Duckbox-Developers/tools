@@ -24,6 +24,7 @@ the great support.
 Feel free to use the code for your own projects. See LICENSE file for details.
 */
 
+#include <config.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -734,6 +735,7 @@ int main(int argc, char **argv)
 	if (stb_type == VULCAN || stb_type == PALLAS)
 		mallocsize=720*576;
 
+#if !BOXMODEL_DREAMBOX_ALL
 	if (pips == 0)
 	{
 		for (int p = 1; p < 4; p++)
@@ -744,6 +746,7 @@ int main(int argc, char **argv)
 				pips = p;
 		}
 	}
+#endif
 
 	video = (unsigned char *)malloc(mallocsize*3);
 	if (pips > 0)
