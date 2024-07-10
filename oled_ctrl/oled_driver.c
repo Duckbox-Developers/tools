@@ -43,7 +43,7 @@ int lcd_read_value(const char *filename)
 	}
 	else
 	{
-#if BOXMODEL_DM8000 || BOXMODEL_DM7080
+#if BOXMODEL_DM8000 || BOXMODEL_DM7080 || BOXMODEL_DM7020HD
 		if (filename == LCD_XRES)
 			value = 132;
 		else if (filename == LCD_YRES)
@@ -101,9 +101,9 @@ int lcd_open(const char *dev, int mode, int x_res, int y_res)
 		return -1;
 	}
 
-#if BOXMODEL_DM8000 || BOXMODEL_DM7080
+#if BOXMODEL_DM8000 || BOXMODEL_DM7080 || BOXMODEL_DM7020HD
 	if (xres == 132 && yres == 64 && bpp == 8) {
-		printf("DM8000/DM7080 original LCD not supported.\n", xres, yres, bpp);
+		printf("DM7020HD/DM8000/DM7080 original LCD not supported.\n", xres, yres, bpp);
 		return 0;
 	}
 #endif
@@ -115,7 +115,7 @@ int lcd_open(const char *dev, int mode, int x_res, int y_res)
 
 int lcd_setmode(int mode)
 {
-#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA && !BOXMODEL_VUULTIMO && !BOXMODEL_DM820 && !BOXMODEL_DM7080 && !BOXMODEL_DM900 && !BOXMODEL_DM920
+#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA && !BOXMODEL_VUULTIMO && !BOXMODEL_DM7020HD && !BOXMODEL_DM820 && !BOXMODEL_DM7080 && !BOXMODEL_DM900 && !BOXMODEL_DM920
 	int tmp;
 	if (mode == 0)
 	{
@@ -218,7 +218,7 @@ void lcd_draw()
 
 int lcd_clear()
 {
-#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA && !BOXMODEL_VUULTIMO && !BOXMODEL_DM820 && !BOXMODEL_DM7080 && !BOXMODEL_DM900 && !BOXMODEL_DM920
+#if !BOXMODEL_DM8000 && !BOXMODEL_E4HDULTRA && !BOXMODEL_VUULTIMO && !BOXMODEL_DM7020HD && !BOXMODEL_DM820 && !BOXMODEL_DM7080 && !BOXMODEL_DM900 && !BOXMODEL_DM920
 	if (ioctl(fd, LCD_IOCTL_CLEAR) < 0)
 	{
 		printf("%s: cannot clear lcd device\n", __FUNCTION__);
