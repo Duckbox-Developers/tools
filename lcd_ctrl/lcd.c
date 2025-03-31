@@ -307,6 +307,9 @@ void LCD_draw_string(int x, int y, char *string)
 		c = *string++;
 		switch (c)
 		{
+			case 0xffffffc2:
+				d = *string++;
+				d = '?'; LCD_draw_char(x, y, d); x+=8; c = '\0'; break;
 			case 0xffffffc3:
 				d = *string++;
 				switch (d)
