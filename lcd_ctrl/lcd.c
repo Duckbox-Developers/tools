@@ -308,19 +308,13 @@ void LCD_draw_string(int x, int y, unsigned char *string)
 		switch (c)
 		{
 			case 0xC2:
-				LCD_draw_char(x, y, *string++); x+=8; c = '\0'; break;
-			case 0xC3:
 				d = *string++;
-				switch (d)
-				{
-					case 0x84: d = 0xC4; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ä
-					case 0x96: d = 0xD6; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ö
-					case 0x9c: d = 0xDC; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ü
-					case 0xA4: d = 0xE4; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ä
-					case 0xB6: d = 0xF6; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ö
-					case 0xBC: d = 0xFC; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ü
-					case 0x9F: d = 0xDF; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ß
-				}
+				LCD_draw_char(x, y, d); x+=8; c = '\0'; break;
+			case 0xC3:
+				d = *string++ | 0xC0;
+				LCD_draw_char(x, y, d); x+=8; c = '\0'; break;
+			case 0xE2:
+				*string++; *string++; c = '\0'; break;
 		}
 		if (c)
 		{
