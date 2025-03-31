@@ -287,7 +287,7 @@ void LCD_draw_polygon(int num_vertices, int *vertices, int state)
 		state);
 }
 
-void LCD_draw_char(int x, int y, char c)
+void LCD_draw_char(int x, int y, unsigned char c)
 {
 	int ax,ay;
 	unsigned char *data=&font[8*c];
@@ -298,29 +298,28 @@ void LCD_draw_char(int x, int y, char c)
 				LCD_draw_point(x+ax, y+ay, data[ay]&(1<<(7-ax)) ? PIXEL_ON:PIXEL_OFF);
 }
 
-void LCD_draw_string(int x, int y, char *string)
+void LCD_draw_string(int x, int y, unsigned char *string)
 {
-	char c;
-	char d;
+	unsigned char c;
+	unsigned char d;
 	while (*string)
 	{
 		c = *string++;
 		switch (c)
 		{
-			case 0xffffffc2:
-				d = *string++;
-				d = '?'; LCD_draw_char(x, y, d); x+=8; c = '\0'; break;
-			case 0xffffffc3:
+			case 0xC2:
+				LCD_draw_char(x, y, *string++); x+=8; c = '\0'; break;
+			case 0xC3:
 				d = *string++;
 				switch (d)
 				{
-					case 0xffffff84: c = 'A'; d = 'E'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ä
-					case 0xffffff96: c = 'O'; d = 'E'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ö
-					case 0xffffff9c: c = 'U'; d = 'E'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ü
-					case 0xffffffa4: c = 'a'; d = 'e'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ä
-					case 0xffffffb6: c = 'o'; d = 'e'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ö
-					case 0xffffffbc: c = 'u'; d = 'e'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ü
-					case 0xffffff9f: c = 's'; d = 's'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ß
+					case 0x84: d = 0xC4; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ä
+					case 0x96: d = 0xD6; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ö
+					case 0x9c: d = 0xDC; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ü
+					case 0xA4: d = 0xE4; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ä
+					case 0xB6: d = 0xF6; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ö
+					case 0xBC: d = 0xFC; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ü
+					case 0x9F: d = 0xDF; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ß
 				}
 		}
 		if (c)
