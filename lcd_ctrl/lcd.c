@@ -34,7 +34,7 @@ void LCD_Read(void)
 	memset(raw,0,132*64);
 	read(fd, &lcd, 120*64/8);
 	for(x=0;x < LCD_COLS;x++)
-	{   
+	{
 		for(y=0;y < LCD_ROWS; y++)
 		{
 			tmp2 = lcd[y][x];
@@ -93,7 +93,7 @@ int LCD_invalid_row (int y)
 		return -1;
 	if( y < 0)
 		return -1;
-	return 0;   
+	return 0;
 }
 
 void LCD_convert_data ()
@@ -226,7 +226,7 @@ void LCD_draw_line (int x1, int y1, int x2, int y2, int state)
 	sdy=LCD_sgn(dy);
 	if (dxabs>=dyabs) /* the line is more horizontal than vertical */ {
 		slope=(float)dy / (float)dx;
-		for(i=0;i!=dx;i+=sdx) {	     
+		for(i=0;i!=dx;i+=sdx) {
 			px=i+x1;
 			py=(int)( slope*i+y1 );
 			LCD_draw_point(px,py,state);
@@ -300,10 +300,31 @@ void LCD_draw_char(int x, int y, char c)
 
 void LCD_draw_string(int x, int y, char *string)
 {
+	char c;
+	char d;
 	while (*string)
 	{
-		LCD_draw_char(x, y, *string++);
-		x+=8;
+		c = *string++;
+		switch (c)
+		{
+			case 0xffffffc3:
+				d = *string++;
+				switch (d)
+				{
+					case 0xffffff84: c = 'A'; d = 'E'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ä
+					case 0xffffff96: c = 'O'; d = 'E'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ö
+					case 0xffffff9c: c = 'U'; d = 'E'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut Ü
+					case 0xffffffa4: c = 'a'; d = 'e'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ä
+					case 0xffffffb6: c = 'o'; d = 'e'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ö
+					case 0xffffffbc: c = 'u'; d = 'e'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ü
+					case 0xffffff9f: c = 's'; d = 's'; LCD_draw_char(x, y, c); x+=8; LCD_draw_char(x, y, d); x+=8; c = '\0'; break; // Umlaut ß
+				}
+		}
+		if (c)
+		{
+			LCD_draw_char(x, y, c);
+			x+=8;
+		}
 	}
 }
 
