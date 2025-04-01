@@ -176,12 +176,12 @@ void LCD_Read(void)
 
 	memset(raw, 0, 132 * 64);
 	read(fd, &lcd, 120 * 64 / 8);
-	for(x = 0; x < LCD_COLS; x++)
+	for (x = 0; x < LCD_COLS; x++)
 	{
-		for(y = 0; y < LCD_ROWS; y++)
+		for (y = 0; y < LCD_ROWS; y++)
 		{
 			tmp2 = lcd[y][x];
-			for(z = 0; z <= 7; z++)
+			for (z = 0; z <= 7; z++)
 			{
 				if (tmp2 & (1 << z))
 					raw[x][y * 8 + z] = 1;
@@ -241,12 +241,12 @@ void LCD_convert_data()
 {
 	int x, y, z;
 	char tmp2;
-	for(x = 0; x < LCD_COLS; x++)
+	for (x = 0; x < LCD_COLS; x++)
 	{
-		for(y = 0; y < LCD_ROWS; y++)
+		for (y = 0; y < LCD_ROWS; y++)
 		{
 			tmp2 = 0;
-			for(z = 0; z <= 7; z++)
+			for (z = 0; z <= 7; z++)
 			{
 				if (raw[x][y * 8 + z] == 1)
 				{
