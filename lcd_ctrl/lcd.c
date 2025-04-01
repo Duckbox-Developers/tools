@@ -183,7 +183,7 @@ void LCD_Read(void)
 			tmp2 = lcd[y][x];
 			for(z = 0; z <= 7; z++)
 			{
-				if(tmp2 & (1 << z))
+				if (tmp2 & (1 << z))
 					raw[x][y * 8 + z] = 1;
 			}
 		}
@@ -192,10 +192,9 @@ void LCD_Read(void)
 
 int LCD_Init(void)
 {
-	//open device
-	if((fd = open(LCD_DEVICE, O_RDWR)) < 0)
+	if ((fd = open(LCD_DEVICE, O_RDWR)) < 0)
 	{
-		perror("LCD open error");
+		printf("%s: open %s failed! (%m)\n", __FUNCTION__, LCD_DEVICE);
 		return -1;
 	}
 
@@ -212,7 +211,7 @@ void LCD_Clear(void)
 
 int LCD_Close(void)
 {
-	if(fd >= 0)
+	if (fd >= 0)
 	{
 		close(fd);
 		fd = -1;
@@ -220,33 +219,37 @@ int LCD_Close(void)
 	return 0;
 }
 
-int LCD_invalid_col (int x)
+int LCD_invalid_col(int x)
 {
-	if( x > LCD_COLS )
+	if (x > LCD_COLS)
 		return -1;
-	if( x < 0 )
+	if (x < 0)
 		return -1;
 	return 0;
 }
 
-int LCD_invalid_row (int y)
+int LCD_invalid_row(int y)
 {
-	if( y > LCD_ROWS * 8 )
+	if (y > LCD_ROWS * 8)
 		return -1;
-	if( y < 0)
+	if (y < 0)
 		return -1;
 	return 0;
 }
 
-void LCD_convert_data ()
+void LCD_convert_data()
 {
 	int x, y, z;
 	char tmp2;
-	for(x = 0; x < LCD_COLS; x++) {
-		for(y = 0; y < LCD_ROWS; y++) {
+	for(x = 0; x < LCD_COLS; x++)
+	{
+		for(y = 0; y < LCD_ROWS; y++)
+		{
 			tmp2 = 0;
-			for(z = 0; z <= 7; z++) {
-				if(raw[x][y * 8 + z] == 1) {
+			for(z = 0; z <= 7; z++)
+			{
+				if (raw[x][y * 8 + z] == 1)
+				{
 					tmp2 |= 1 << z;
 				}
 			}
@@ -258,7 +261,8 @@ void LCD_convert_data ()
 int LCD_brightness(int brightness)
 {
 	int value = 0;
-	switch(brightness) {
+	switch(brightness)
+	{
 		case 0:
 			value = 0;
 			break;
@@ -310,11 +314,11 @@ void LCD_update()
 	write(fd, lcd, 120 * 64 / 8);
 }
 
-void LCD_draw_point (int x, int y, int state)
+void LCD_draw_point(int x, int y, int state)
 {
-	if(state == LCD_PIXEL_INV)
+	if (state == LCD_PIXEL_INV)
 	{
-		if(raw[x][y] == LCD_PIXEL_ON) 
+		if (raw[x][y] == LCD_PIXEL_ON)
 			raw[x][y] = LCD_PIXEL_OFF;
 		else
 			raw[x][y] = LCD_PIXEL_ON;
@@ -345,12 +349,21 @@ void LCD_draw_string(int x, int y, unsigned char *string)
 		{
 			case 0xC2:
 				d = *string++;
-				LCD_draw_char(x, y, d); x += 8; c = '\0'; break;
+				LCD_draw_char(x, y, d);
+				x += 8;
+				c = '\0';
+				break;
 			case 0xC3:
 				d = *string++ | 0xC0;
-				LCD_draw_char(x, y, d); x += 8; c = '\0'; break;
+				LCD_draw_char(x, y, d);
+				x += 8;
+				c = '\0';
+				break;
 			case 0xE2:
-				*string++; *string++; c = '\0'; break;
+				*string++;
+				*string++;
+				c = '\0';
+				break;
 		}
 		if (c)
 		{

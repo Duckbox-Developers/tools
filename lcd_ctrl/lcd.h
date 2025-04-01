@@ -39,25 +39,25 @@
 #define LCD_COLS	120
 
 enum
-	{
+{
 	PIXEL_ON =	LCD_PIXEL_ON,
 	PIXEL_OFF =	LCD_PIXEL_OFF,
 	PIXEL_INV =	LCD_PIXEL_INV
-	};
+};
 
-	int LCD_Init(void);
-	void LCD_Clear(void);
-	int LCD_Close(void);
+int LCD_Init(void);
+void LCD_Clear(void);
+int LCD_Close(void);
 
-	int LCD_invalid_col(int x);
-	int LCD_invalid_row(int y);
-	void LCD_convert_data();
-	int LCD_brightness(int brightness);
-	void LCD_update();
-	void LCD_Read(void);
+int LCD_invalid_col(int x);
+int LCD_invalid_row(int y);
+void LCD_convert_data();
+int LCD_brightness(int brightness);
+void LCD_update();
+void LCD_Read(void);
 
-	void LCD_draw_point (int x,int y, int state);
-	void LCD_draw_char(int x, int y, unsigned char c);
-	void LCD_draw_string(int x, int y, unsigned char *string);
+void LCD_draw_point (int x,int y, int state);
+void LCD_draw_char(int x, int y, unsigned char c);
+void LCD_draw_string(int x, int y, unsigned char *string);
 
 #endif
