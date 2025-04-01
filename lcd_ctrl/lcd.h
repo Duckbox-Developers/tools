@@ -28,6 +28,9 @@
 #include <unistd.h>
 #include <string.h>
 
+#define LCD_DEVICE	"/dev/dbox/lcd0"
+#define LCD_BRIGHTNESS	"/proc/stb/lcd/oled_brightness"
+
 #define LCD_PIXEL_OFF	0
 #define LCD_PIXEL_ON	1
 #define LCD_PIXEL_INV	2
@@ -50,19 +53,11 @@ enum
 	int LCD_invalid_row(int y);
 	void LCD_convert_data();
 	int LCD_brightness(int brightness);
-	int LCD_sgn(int arg);
-	void LCD_setIconBasePath(char *base);
 	void LCD_update();
 	void LCD_Read(void);
 
 	void LCD_draw_point (int x,int y, int state);
-	void LCD_draw_line (int x1, int y1, int x2, int y2, int state);
-	void LCD_draw_fill_rect (int left,int top,int right,int bottom,int state);
-	void LCD_draw_rectangle (int left,int top, int right, int bottom, int linestate,int fillstate);
-	void LCD_draw_polygon(int num_vertices, int *vertices, int state);
 	void LCD_draw_char(int x, int y, unsigned char c);
 	void LCD_draw_string(int x, int y, unsigned char *string);
-
-	void LCD_paintIcon(unsigned char *filename, int x, int y, int col);
 
 #endif
