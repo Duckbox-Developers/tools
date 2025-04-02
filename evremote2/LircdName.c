@@ -294,16 +294,12 @@ static int pShutdown(Context_t *context)
 static int pRead(Context_t *context)
 {
 	char vBuffer[128];
-	char vData[3];
 	const int cSize = 128;
 	int vCurrentCode = -1;
-	char *buffer;
-	char KeyName[30]; 	//For flexibility we use Lircd keys names
+	char KeyName[30];	//For flexibility we use Lircd keys names
 	int LastKeyNameChar;	//for long detection on RCU sending different codes for short/long
 	int count;
 	tButton *cButtons = cButtons_LircdName;
-
-	long long LastTime;
 
 	memset(vBuffer, 0, 128);
 
