@@ -23,20 +23,24 @@
 
 static RemoteControl_t *AvailableRemoteControls[] =
 {
+#if BOXMODEL_UFS910
 	&Ufs910_1W_RC,
 	&Ufs910_14W_RC,
-	&Tf7700_RC,
+#elif BOXMODEL_UFS922
 	&UFS922_RC,
+#else
+	&Tf7700_RC,
 	&Fortis_RC,
 	&UFS912_RC,
 	&Spark_RC,
 	&Cuberevo_RC,
 	&Ipbox_RC,
+#endif
 	&LircdName_RC,
 	NULL
 };
 
-int selectRemote(Context_t  *context, eBoxType type)
+int selectRemote(Context_t *context, eBoxType type)
 {
 	int i;
 
