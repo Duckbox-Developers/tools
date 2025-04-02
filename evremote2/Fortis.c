@@ -51,7 +51,7 @@ typedef struct
 
 static tLongKeyPressSupport cLongKeyPressSupport =
 {
-	10, 140,
+	10, 140
 };
 
 static tButton cButtonFortis[] =
@@ -248,5 +248,5 @@ RemoteControl_t Fortis_RC =
 	cButtonFortisFrontpanel,
 	NULL,
 	1,
-	&cLongKeyPressSupport,
+	&cLongKeyPressSupport
 };

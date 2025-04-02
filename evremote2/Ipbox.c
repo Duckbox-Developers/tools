@@ -41,7 +41,7 @@
 
 static tLongKeyPressSupport cLongKeyPressSupport =
 {
-	10, 120,
+	10, 120
 };
 
 /* Spider Box HL-101 RCU */
@@ -108,7 +108,7 @@ static tButton cButtonsSpideroxIpbox[] =
 	{"ANGLE"          , "8d", KEY_ANGLE},
 	{"REFRESH"        , "cd", KEY_REFRESH},
 
-	{""               , ""  , KEY_NULL},
+	{""               , ""  , KEY_NULL}
 };
 /* fixme: move this to a structure and
  * use the private structure of RemoteControl_t
@@ -228,5 +228,5 @@ RemoteControl_t Ipbox_RC =
 	NULL,
 	NULL,
 	1,
-	&cLongKeyPressSupport,
+	&cLongKeyPressSupport
 };

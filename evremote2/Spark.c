@@ -63,7 +63,7 @@ char VendorStbId[] = "00:00:00\0";
 
 static tLongKeyPressSupport cLongKeyPressSupport =
 {
-	10, 120,
+	10, 120
 };
 
 /* Edision argus-spark RCU */
@@ -984,6 +984,5 @@ RemoteControl_t Spark_RC =
 	NULL,
 	NULL,
 	1,
-	&cLongKeyPressSupport,
+	&cLongKeyPressSupport
 };
-

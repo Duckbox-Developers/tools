@@ -42,7 +42,7 @@
 
 static tLongKeyPressSupport cLongKeyPressSupport =
 {
-	10, 110,
+	10, 110
 };
 
 static tButton cButtonsTopfield7700HDPVR[] =
@@ -101,7 +101,7 @@ static tButton cButtonsTopfield7700HDPVR[] =
 	{"TV/RADIO"       , "04", KEY_TV2}, //WE USE TV2 AS TV/RADIO SWITCH BUTTON
 	{"USB"            , "40", KEY_ARCHIVE},
 	{"TIMER"          , "44", KEY_TIME},
-	{""               , ""  , KEY_NULL},
+	{""               , ""  , KEY_NULL}
 };
 
 /* ***************** our fp button assignment **************** */
@@ -115,7 +115,7 @@ static tButton cButtonsTopfield7700HDPVRFrontpanel[] =
 	{"VOLUMEUP"       , "06", KEY_VOLUMEUP},
 
 	{"STANDBY"        , "0C", KEY_POWER}, // This is the fake power call
-	{""               , ""  , KEY_NULL},
+	{""               , ""  , KEY_NULL}
 };
 
 
@@ -218,5 +218,5 @@ RemoteControl_t Tf7700_RC =
 	cButtonsTopfield7700HDPVRFrontpanel,
 	NULL,
 	1,
-	&cLongKeyPressSupport,
+	&cLongKeyPressSupport
 };

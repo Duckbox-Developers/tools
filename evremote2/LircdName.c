@@ -224,11 +224,11 @@ static tButton cButtons_LircdName[] =
 	{"KEY_EXIT"         , "=>", KEY_EXIT},
 	{"KEY_SLEEP"        , "=>", KEY_SLEEP},
 	{"KEY_OPEN"         , "=>", KEY_OPEN},
-  {"KEY_POWERON"      , "=>", KEY_POWERON},
-  {"KEY_POWEROFF"     , "=>", KEY_POWEROFF},
-  {"KEY_STANDBYON"    , "=>", KEY_STANDBYON},
-  {"KEY_STANDBYOFF"   , "=>", KEY_STANDBYOFF},
-	{""                 , ""  , KEY_NULL},
+	{"KEY_POWERON"      , "=>", KEY_POWERON},
+	{"KEY_POWEROFF"     , "=>", KEY_POWEROFF},
+	{"KEY_STANDBYON"    , "=>", KEY_STANDBYON},
+	{"KEY_STANDBYOFF"   , "=>", KEY_STANDBYOFF},
+	{""                 , ""  , KEY_NULL}
 };
 /* fixme: move this to a structure and
  * use the private structure of RemoteControl_t
@@ -445,5 +445,5 @@ RemoteControl_t LircdName_RC =
 	NULL,
 	NULL,
 	1,
-	&cLongKeyPressSupport,
+	&cLongKeyPressSupport
 };
