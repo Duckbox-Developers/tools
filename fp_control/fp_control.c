@@ -545,6 +545,7 @@ int getModel()
 		vName[vLen - 1] = '\0';
 		printf("Model: %s\n", vName);
 
+#if BOXMODEL_UFS910
 		if (!strncasecmp(vName, "ufs910", 6))
 		{
 			switch (getKathreinUfs910BoxType())
@@ -562,9 +563,11 @@ int getModel()
 					break;
 			}
 		}
-		else if (!strncasecmp(vName, "ufs922", 6))
+#elif BOXMODEL_UFS922
+		if (!strncasecmp(vName, "ufs922", 6))
 			vBoxType = Ufs922;
-		else if (!strncasecmp(vName, "tf7700hdpvr", 11))
+#else
+		if (!strncasecmp(vName, "tf7700hdpvr", 11))
 			vBoxType = Tf7700;
 		else if (!strncasecmp(vName, "hdbox", 5))
 			vBoxType = Fortis;
@@ -589,6 +592,7 @@ int getModel()
 				(!strncasecmp(vName, "cuberevo-2000hd", 15)) ||
 				(!strncasecmp(vName, "cuberevo-3000hd", 14)))
 			vBoxType = Cuberevo;
+#endif
 		else
 			vBoxType = Unknown;
 	}

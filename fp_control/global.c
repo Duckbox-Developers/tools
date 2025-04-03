@@ -45,13 +45,17 @@ char *sDisplayStd = "%a %d %H:%M:%S";
 
 static Model_t *AvailableModels[] =
 {
+#if BOXMODEL_UFS910
 	&Ufs910_1W_model,
 	&Ufs910_14W_model,
+#elif BOXMODEL_UFS922
 	&UFS922_model,
+#else
 	&Fortis_model,
 	&UFS912_model,
 	&Spark_model,
 	&Cuberevo_model,
+#endif
 	NULL
 };
 

@@ -1,6 +1,8 @@
 #ifndef GLOBAL_H_
 #define GLOBAL_H_
 
+#include <config.h>
+
 #ifndef bool
 #define bool unsigned char
 #define true 1
@@ -37,7 +39,15 @@ struct vfd_ioctl_data
 
 typedef enum {NONE, POWERON, STANDBY, TIMER, POWERSWITCH, UNK1, UNK2, UNK3} eWakeupReason;
 
-typedef enum {Unknown, Ufs910_1W, Ufs910_14W, Ufs922, Tf7700, Fortis, Ufs912, Spark, Cuberevo} eBoxType;
+typedef enum {	Unknown,
+#if BOXMODEL_UFS910
+		Ufs910_1W, Ufs910_14W,
+#elif BOXMODEL_UFS922
+		Ufs922,
+#else
+		Tf7700, Fortis, Ufs912, Spark, Cuberevo
+#endif
+	     } eBoxType;
 
 typedef struct Context_s
 {
@@ -79,13 +89,17 @@ typedef struct Model_s
 		void *private;
 } Model_t;
 
+#if BOXMODEL_UFS910
 extern Model_t Ufs910_1W_model;
 extern Model_t Ufs910_14W_model;
-extern Model_t UFS912_model;
+#elif BOXMODEL_UFS922
 extern Model_t UFS922_model;
+#else
+extern Model_t UFS912_model;
 extern Model_t Fortis_model;
 extern Model_t Spark_model;
 extern Model_t Cuberevo_model;
+#endif
 
 double modJulianDate(struct tm *theTime);
 time_t read_timers_utc(time_t curTime);
