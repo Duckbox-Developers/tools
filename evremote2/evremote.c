@@ -449,7 +449,6 @@ int getModel()
 					break;
 			}
 		}
-		else
 #elif BOXMODEL_UFS922
 		if (!strncasecmp(vName, "ufs922", 6))
 			vBoxType = Ufs922;
