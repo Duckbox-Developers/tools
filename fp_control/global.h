@@ -41,9 +41,9 @@ typedef enum {NONE, POWERON, STANDBY, TIMER, POWERSWITCH, UNK1, UNK2, UNK3} eWak
 
 typedef enum {	Unknown,
 #if BOXMODEL_UFS910
-		Ufs910_1W, Ufs910_14W,
+		Ufs910_1W, Ufs910_14W
 #elif BOXMODEL_UFS922
-		Ufs922,
+		Ufs922
 #else
 		Tf7700, Fortis, Ufs912, Spark, Cuberevo
 #endif
