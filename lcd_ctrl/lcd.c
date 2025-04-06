@@ -1,5 +1,5 @@
 /*
- * lcd for DM8000/DM7020/DM7080
+ * lcd for DM8000/DM7020/DM7080/DM800SE/DM800SEV2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ void usage(char *prg, char *cmd)
 {
 	int i;
 	/* or printout a default usage */
-	fprintf(stderr, "LCD control tool, version 1.00 (DM8000/DM7020/DM7080)\n");
+	fprintf(stderr, "LCD control tool, version 1.00 (DM800SE/DM800SEV2/DM8000/DM7020/DM7080)\n");
 	fprintf(stderr, "General usage:\n\n");
 	fprintf(stderr, "%s argument [optarg1] [optarg2]\n", prg);
 

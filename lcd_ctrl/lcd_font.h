@@ -1,5 +1,5 @@
 /*
- * lcd for DM8000/DM7020/DM7080
+ * lcd for DM800SE/DM800SEV2/DM8000/DM7020/DM7080
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
