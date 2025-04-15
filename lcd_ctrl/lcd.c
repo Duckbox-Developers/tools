@@ -46,7 +46,7 @@ void usage(char *prg, char *cmd)
 {
 	int i;
 	/* or printout a default usage */
-	fprintf(stderr, "LCD control tool, version 1.00 (DM800SE/DM800SEV2/DM8000/DM7020/DM7080)\n");
+	fprintf(stderr, "LCD control tool, version 1.01 (DM800SE/DM800SEV2/DM8000/DM7020/DM7080)\n");
 	fprintf(stderr, "General usage:\n\n");
 	fprintf(stderr, "%s argument [optarg1] [optarg2]\n", prg);
 
@@ -57,6 +57,7 @@ void usage(char *prg, char *cmd)
 		if ((cmd == NULL) || (strcmp(cmd, vArgs[i].arg) == 0) || (strstr(vArgs[i].arg_long, cmd) != NULL))
 			fprintf(stderr, "%s %s %s\n", vArgs[i].arg, vArgs[i].arg_long, vArgs[i].arg_description);
 	}
+	LCD_Close();
 	exit(1);
 }
 
