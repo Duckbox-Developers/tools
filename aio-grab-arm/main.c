@@ -512,6 +512,11 @@ int main(int argc, char **argv)
 					stb_type = WETEK;
 					break;
 				}
+				else if (strstr(buf,"pnx8493"))
+				{
+					stb_type = XILLEON;
+					break;
+				}
 			}
 			fclose(file);
 		}
@@ -738,7 +743,8 @@ int main(int argc, char **argv)
 #if !BOXMODEL_DREAMBOX_ALL
 	if (pips == 0)
 	{
-		for (int p = 1; p < 4; p++)
+		int p;
+		for (p = 1; p < 4; p++)
 		{
 			char pipbuf[25];
 			sprintf(pipbuf,"/proc/stb/vmpeg/%d/xres", p);
