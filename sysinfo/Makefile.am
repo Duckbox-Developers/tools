@@ -3,7 +3,7 @@ AM_CPPFLAGS =  \
 	@PNG_CFLAGS@ \
 	-I$(top_srcdir)/include
 
-bin_PROGRAMS = sysinfo
+noinst_PROGRAMS = sysinfo
 
 sysinfo_SOURCES = \
 	sysinfo.c \
