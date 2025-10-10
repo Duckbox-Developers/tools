@@ -857,7 +857,7 @@ int get_info_cpu(void)
 			{
 				daten_auslesen(line_buffer, hard_rev, sizeof(hard_rev),':', '\n');
 			}
-#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM7020HD || BOXMODEL_DM8000 || BOXMODEL_DM800SE || BOXMODEL_DM800SEV2 || BOXMODEL_DM820 || BOXMODEL_DM7080
+#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM7020HD || BOXMODEL_DM8000 || BOXMODEL_DM800 || BOXMODEL_DM800SE || BOXMODEL_DM800SEV2 || BOXMODEL_DM820 || BOXMODEL_DM7080
 			// Hardware
 			if ((ptr = strstr(line_buffer, "system type")) != NULL)
 			{
@@ -896,7 +896,7 @@ int get_info_cpu(void)
 			{
 				daten_auslesen(line_buffer, bogomips, sizeof(bogomips),':', '\n');
 			}
-#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM7020HD || BOXMODEL_DM8000 || BOXMODEL_DM800SE || BOXMODEL_DM800SEV2 || BOXMODEL_DM820 || BOXMODEL_DM7080
+#elif BOXMODEL_VUDUO || BOXMODEL_VUDUO2 || BOXMODEL_VUULTIMO || BOXMODEL_DM7020HD || BOXMODEL_DM8000 || BOXMODEL_DM800 || BOXMODEL_DM800SE || BOXMODEL_DM800SEV2 || BOXMODEL_DM820 || BOXMODEL_DM7080
 			// Processor
 			if ((ptr = strstr(line_buffer, "cpu model")) != NULL)
 			{
@@ -2065,7 +2065,9 @@ int get_network_info(const char *interface, int *speed, char *duplex_mode) {
 		return -1;
 	}
 
+#if !BOXMODEL_DM800
 	*speed = ethtool_cmd_speed(&edata);
+#endif
 
 	if (edata.duplex == DUPLEX_FULL) {
 		strlcpy(duplex_mode, "Full", 20);
