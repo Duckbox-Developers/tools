@@ -1969,7 +1969,7 @@ void RenderMenuLine(int highlight, int refresh)
 		RenderBox( (viewx/COLORBUTTONS) *i ,viewy-MENUSIZE/2, (viewx/COLORBUTTONS) *(i+1) , viewy , FILL,  (i == 0 ? RED    :
 		                                                            					                   (i == 1 ? GREEN  :
 		                                                            					                   (i == 2 ? YELLOW : BLUE1))));
-#if !BOXMODEL_DCUBE // 3rd value overflow?!
+#if !BOXMODEL_DCUBE && !BOXMODEL_DM800 // 3rd value overflow?!
 		RenderBox( (viewx/COLORBUTTONS) *i ,viewy-MENUSIZE/2, (i < COLORBUTTONS-1 ? (viewx/COLORBUTTONS) *(i+1) : viewx) , viewy , GRID,  WHITE );
 #endif
 #ifdef MARTII
